@@ -4,7 +4,60 @@
 <?php $this->load->view("components/header.php") ?>
 
 <body id="page-top">
-
+	<?php if($this->session->flashdata('success_input')) { ?>
+		<script>
+			swal({
+				title: "Success",
+				text: "Data Berhasil Ditambahkan!",
+				icon: "success"
+			});
+		</script>
+	<?php } ?>
+	<?php if($this->session->flashdata('error_input')) { ?>
+		<script>
+			swal({
+				title: "Error",
+				text: "Data Gagal Ditambahkan!",
+				icon: "error"
+			});
+		</script>
+	<?php } ?>
+	<?php if($this->session->flashdata('success_edit')) { ?>
+		<script>
+			swal({
+				title: "Success",
+				text: "Data Berhasil Diubah!",
+				icon: "success"
+			});
+		</script>
+	<?php } ?>
+	<?php if($this->session->flashdata('error_edit')) { ?>
+		<script>
+			swal({
+				title: "Error",
+				text: "Data Gagal Diubah!",
+				icon: "error"
+			});
+		</script>
+	<?php } ?>
+	<?php if($this->session->flashdata('success_delete')) { ?>
+		<script>
+			swal({
+				title: "Success",
+				text: "Data Berhasil Dihapus!",
+				icon: "success"
+			});
+		</script>
+	<?php } ?>
+	<?php if($this->session->flashdata('error_delete')) { ?>
+		<script>
+			swal({
+				title: "Error",
+				text: "Data Gagal Dihapus!",
+				icon: "error"
+			});
+		</script>
+	<?php } ?>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -80,7 +133,7 @@
 														</button>
 													</div>
 													<div class="modal-body">
-														<form>
+														<form action="<?= base_url() ?>Barang/edit_barang/<?=$id_barang?>" method="POST" enctype="multipart/form-data">
 															<div class="form-group">
 																<label for="nama_barang">Nama barang</label>
 																<input type="text" class="form-control" id="nama_barang" name="nama_barang" aria-describedby="nama_barang" value="<?= $nama_barang ?>">
@@ -110,7 +163,7 @@
 														</button>
 													</div>
 													<div class="modal-body">
-														<form>
+														<form action="<?= base_url() ?>Barang/delete_barang/<?=$id_barang?>" method="POST" enctype="multipart/form-data">
 															<div class="row">
 																<div class="col-md-12">
 																	<input type="hidden" class="form-control" id="id_barang" name="id_barang" aria-describedby="id_barang">
@@ -140,22 +193,22 @@
 												</button>
 											</div>
 											<div class="modal-body">
-												<form>
+												<form action="<?= base_url() ?>Barang/insert_barang" method="POST" enctype="multipart/form-data">
 													<div class="form-group">
 														<label for="id_barang">Id barang</label>
-														<input type="text" class="form-control" id="id_barang" name="id_barang" aria-describedby="id_barang">
+														<input type="text" class="form-control" id="id_barang" name="id_barang" aria-describedby="id_barang" required>
 													</div>
 													<div class="form-group">
 														<label for="nama_barang">Nama barang</label>
-														<input type="text" class="form-control" id="nama_barang" name="nama_barang" aria-describedby="nama_barang">
+														<input type="text" class="form-control" id="nama_barang" name="nama_barang" aria-describedby="nama_barang" required>
 													</div>
 													<div class="form-group">
 														<label for="harga">Harga barang</label>
-														<input type="text" class="form-control" id="harga" name="harga" aria-describedby="harga">
+														<input type="text" class="form-control" id="harga" name="harga" aria-describedby="harga" required>
 													</div>
 													<div class="form-group">
 														<label for="stok">Stok barang</label>
-														<input type="text" class="form-control" id="stok" name="stok" aria-describedby="stok">
+														<input type="text" class="form-control" id="stok" name="stok" aria-describedby="stok" required>
 													</div>
 													<button type="submit" class="btn btn-primary">Submit</button>
 												</form>

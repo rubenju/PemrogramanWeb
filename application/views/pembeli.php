@@ -4,7 +4,60 @@
 <?php $this->load->view("components/header.php") ?>
 
 <body id="page-top">
-
+	<?php if($this->session->flashdata('success_input')) { ?>
+		<script>
+			swal({
+				title: "Success",
+				text: "Data Berhasil Ditambahkan!",
+				icon: "success"
+			});
+		</script>
+	<?php } ?>
+	<?php if($this->session->flashdata('error_input')) { ?>
+		<script>
+			swal({
+				title: "Error",
+				text: "Data Gagal Ditambahkan!",
+				icon: "error"
+			});
+		</script>
+	<?php } ?>
+	<?php if($this->session->flashdata('success_edit')) { ?>
+		<script>
+			swal({
+				title: "Success",
+				text: "Data Berhasil Diubah!",
+				icon: "success"
+			});
+		</script>
+	<?php } ?>
+	<?php if($this->session->flashdata('error_edit')) { ?>
+		<script>
+			swal({
+				title: "Error",
+				text: "Data Gagal Diubah!",
+				icon: "error"
+			});
+		</script>
+	<?php } ?>
+	<?php if($this->session->flashdata('success_delete')) { ?>
+		<script>
+			swal({
+				title: "Success",
+				text: "Data Berhasil Dihapus!",
+				icon: "success"
+			});
+		</script>
+	<?php } ?>
+	<?php if($this->session->flashdata('error_delete')) { ?>
+		<script>
+			swal({
+				title: "Error",
+				text: "Data Gagal Dihapus!",
+				icon: "error"
+			});
+		</script>
+	<?php } ?>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -83,21 +136,21 @@
 														</button>
 													</div>
 													<div class="modal-body">
-														<form>
+														<form action="<?= base_url() ?>Pembeli/edit_pembeli/<?=$id_pembeli?>" method="POST" enctype="multipart/form-data">
 															<div class="form-group">
-																<label for="nama_barang">Nama pembeli</label>
+																<label for="nama_pembeli">Nama pembeli</label>
 																<input type="text" class="form-control" id="nama_pembeli" name="nama_pembeli" aria-describedby="nama_pembeli" value="<?= $nama_pembeli ?>">
 															</div>
 															<div class="form-group">
-																<label for="harga">Jenis kelamin</label>
+																<label for="jk">Jenis kelamin</label>
 																<input type="text" class="form-control" id="jk" name="jk" aria-describedby="jk" value="<?= $jk ?>">
 															</div>
 															<div class="form-group">
-																<label for="stok">No telpon</label>
+																<label for="no_telp">No telpon</label>
 																<input type="text" class="form-control" id="no_telp" name="no_telp" aria-describedby="no_telp" value="<?= $no_telp ?>">
 															</div>
 															<div class="form-group">
-																<label for="stok">Alamat</label>
+																<label for="alamat">Alamat</label>
 																<input type="text" class="form-control" id="alamat" name="alamat" aria-describedby="alamat" value="<?= $alamat ?>">
 															</div>
 															<button type="submit" class="btn btn-primary">Edit</button>
@@ -117,7 +170,7 @@
 														</button>
 													</div>
 													<div class="modal-body">
-														<form>
+														<form action="<?= base_url() ?>Pembeli/delete_pembeli/<?=$id_pembeli?>" method="POST" enctype="multipart/form-data">
 															<div class="row">
 																<div class="col-md-12">
 																	<input type="hidden" class="form-control" id="id_pembeli" name="id_pembeli" aria-describedby="id_pembeli">
@@ -147,25 +200,25 @@
 												</button>
 											</div>
 											<div class="modal-body">
-												<form>
+												<form action="<?= base_url() ?>Pembeli/insert_pembeli" method="POST" enctype="multipart/form-data">
 													<div class="form-group">
-														<label for="id_barang">Id pembeli</label>
+														<label for="id_pembeli">Id pembeli</label>
 														<input type="text" class="form-control" id="id_pembeli" name="id_pembeli" aria-describedby="id_pembeli">
 													</div>
 													<div class="form-group">
-														<label for="nama_barang">Nama pembeli</label>
+														<label for="nama_pembeli">Nama pembeli</label>
 														<input type="text" class="form-control" id="nama_pembeli" name="nama_pembeli" aria-describedby="nama_pembeli">
 													</div>
 													<div class="form-group">
-														<label for="harga">Jenis kelamin</label>
+														<label for="jk">Jenis kelamin</label>
 														<input type="text" class="form-control" id="jk" name="jk" aria-describedby="jk">
 													</div>
 													<div class="form-group">
-														<label for="stok">No telpon</label>
+														<label for="no_telp">No telpon</label>
 														<input type="text" class="form-control" id="no_telp" name="no_telp" aria-describedby="no_telp">
 													</div>
 													<div class="form-group">
-														<label for="stok">Alamat</label>
+														<label for="alamat">Alamat</label>
 														<input type="text" class="form-control" id="alamat" name="alamat" aria-describedby="alamat">
 													</div>
 													<button type="submit" class="btn btn-primary">Submit</button>
