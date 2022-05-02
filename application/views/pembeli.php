@@ -4,7 +4,7 @@
 <?php $this->load->view("components/header.php") ?>
 
 <body id="page-top">
-	<?php if($this->session->flashdata('success_input')) { ?>
+	<?php if ($this->session->flashdata('success_input')) { ?>
 		<script>
 			swal({
 				title: "Success",
@@ -13,7 +13,7 @@
 			});
 		</script>
 	<?php } ?>
-	<?php if($this->session->flashdata('error_input')) { ?>
+	<?php if ($this->session->flashdata('error_input')) { ?>
 		<script>
 			swal({
 				title: "Error",
@@ -22,7 +22,7 @@
 			});
 		</script>
 	<?php } ?>
-	<?php if($this->session->flashdata('success_edit')) { ?>
+	<?php if ($this->session->flashdata('success_edit')) { ?>
 		<script>
 			swal({
 				title: "Success",
@@ -31,7 +31,7 @@
 			});
 		</script>
 	<?php } ?>
-	<?php if($this->session->flashdata('error_edit')) { ?>
+	<?php if ($this->session->flashdata('error_edit')) { ?>
 		<script>
 			swal({
 				title: "Error",
@@ -40,7 +40,7 @@
 			});
 		</script>
 	<?php } ?>
-	<?php if($this->session->flashdata('success_delete')) { ?>
+	<?php if ($this->session->flashdata('success_delete')) { ?>
 		<script>
 			swal({
 				title: "Success",
@@ -49,11 +49,20 @@
 			});
 		</script>
 	<?php } ?>
-	<?php if($this->session->flashdata('error_delete')) { ?>
+	<?php if ($this->session->flashdata('error_delete')) { ?>
 		<script>
 			swal({
 				title: "Error",
 				text: "Data Gagal Dihapus!",
+				icon: "error"
+			});
+		</script>
+	<?php } ?>
+	<?php if ($this->session->flashdata('error_file_foto')) { ?>
+		<script>
+			swal({
+				title: "Error",
+				text: "Data Foto Gagal Ditambahkan!",
 				icon: "error"
 			});
 		</script>
@@ -97,6 +106,7 @@
 											<th>Jenis Kelamin</th>
 											<th>No telpon</th>
 											<th>Alamat</th>
+											<th>Foto</th>
 											<th>Aksi</th>
 										</tr>
 									</thead>
@@ -107,6 +117,7 @@
 										$jk = $m["p_jk"];
 										$no_telp = $m["p_no_telp"];
 										$alamat = $m["p_alamat"];
+										$foto = $m["p_foto"];
 									?>
 										<tbody>
 											<tr>
@@ -115,6 +126,11 @@
 												<td><?= $jk ?></td>
 												<td><?= $no_telp ?></td>
 												<td><?= $alamat ?></td>
+												<td class="text-center">
+													<a href="<?= base_url(); ?>assets/foto/<?php echo $foto ?>" target="_blank">
+														<img src="<?= base_url(); ?>assets/foto/<?php echo $foto ?>" alt="foto-pembeli" style="width: 50%">
+													</a>
+												</td>
 												<td class="text-center">
 													<a type="button" class="btn btn-primary" data-toggle="modal" data-target="#update<?= $id_pembeli ?>">
 														<i class="fas fa-edit"></i>
@@ -136,7 +152,7 @@
 														</button>
 													</div>
 													<div class="modal-body">
-														<form action="<?= base_url() ?>Pembeli/edit_pembeli/<?=$id_pembeli?>" method="POST" enctype="multipart/form-data">
+														<form action="<?= base_url() ?>Pembeli/edit_pembeli/<?= $id_pembeli ?>" method="POST" enctype="multipart/form-data">
 															<div class="form-group">
 																<label for="nama_pembeli">Nama pembeli</label>
 																<input type="text" class="form-control" id="nama_pembeli" name="nama_pembeli" aria-describedby="nama_pembeli" value="<?= $nama_pembeli ?>">
@@ -152,6 +168,11 @@
 															<div class="form-group">
 																<label for="alamat">Alamat</label>
 																<input type="text" class="form-control" id="alamat" name="alamat" aria-describedby="alamat" value="<?= $alamat ?>">
+															</div>
+															<div class="form-group">
+																<label for="foto">File foto</label>
+																<input type="file" class="form-control" id="foto" name="foto" aria-describedby="foto" value="<?= $foto ?>">
+																<input type="text" class="form-control" id="foto_old" name="foto_old" aria-describedby="foto_old" value="<?= $foto ?>" hidden>
 															</div>
 															<button type="submit" class="btn btn-primary">Edit</button>
 														</form>
@@ -170,10 +191,10 @@
 														</button>
 													</div>
 													<div class="modal-body">
-														<form action="<?= base_url() ?>Pembeli/delete_pembeli/<?=$id_pembeli?>" method="POST" enctype="multipart/form-data">
+														<form action="<?= base_url() ?>Pembeli/delete_pembeli/<?= $id_pembeli ?>" method="POST" enctype="multipart/form-data">
 															<div class="row">
 																<div class="col-md-12">
-																	<input type="hidden" class="form-control" id="id_pembeli" name="id_pembeli" aria-describedby="id_pembeli">
+																	<input type="text" class="form-control" id="foto" name="foto" aria-describedby="foto" value="<?= $foto ?>" hidden>
 																	<p>Apakah Anda yakin untuk menghapus data ini?</p>
 																</div>
 															</div>
@@ -220,6 +241,10 @@
 													<div class="form-group">
 														<label for="alamat">Alamat</label>
 														<input type="text" class="form-control" id="alamat" name="alamat" aria-describedby="alamat">
+													</div>
+													<div class="form-group">
+														<label for="foto">File foto</label>
+														<input type="file" class="form-control" id="foto" name="foto" aria-describedby="foto">
 													</div>
 													<button type="submit" class="btn btn-primary">Submit</button>
 												</form>

@@ -5,13 +5,13 @@ class pembeli_mod extends CI_Model {
 		return $hasil->result_array();
 	}
 
-	public function insert_pembeli($id_pembeli, $nama_pembeli, $jk, $no_telp, $alamat) {
-		$hasil = $this->db->query("SELECT * FROM create_pembeli($id_pembeli, '$nama_pembeli', '$jk', '$no_telp', '$alamat')");
+	public function insert_pembeli($id_pembeli, $nama_pembeli, $jk, $no_telp, $alamat, $foto) {
+		$hasil = $this->db->query("SELECT * FROM create_pembeli($id_pembeli, '$nama_pembeli', '$jk', '$no_telp', '$alamat', '$foto')");
 		return $hasil;
 	}
 
-	public function edit_pembeli($id_pembeli, $nama_pembeli, $jk, $no_telp, $alamat) {
-		$hasil = $this->db->query("SELECT * FROM update_pembeli($id_pembeli, '$nama_pembeli', '$jk', '$no_telp', '$alamat')");
+	public function edit_pembeli($id_pembeli, $nama_pembeli, $jk, $no_telp, $alamat, $foto) {
+		$hasil = $this->db->query("SELECT * FROM update_pembeli($id_pembeli, '$nama_pembeli', '$jk', '$no_telp', '$alamat', '$foto')");
 		return $hasil;
 	}
 
