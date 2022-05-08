@@ -19,5 +19,10 @@ class pembeli_mod extends CI_Model {
 		$hasil = $this->db->query("SELECT * FROM delete_pembeli($id_pembeli)");
 		return $hasil;
 	}
+
+	public function get_total_pembeli() {
+		$hasil = $this->db->query("SELECT COUNT(id_pembeli) as total_pembeli FROM pembeli");
+		return $hasil->row_array();
+	}
 }
 

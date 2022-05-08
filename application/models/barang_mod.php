@@ -19,5 +19,10 @@ class barang_mod extends CI_Model {
 		$hasil = $this->db->query("SELECT * FROM delete_barang($id_barang)");
 		return $hasil;
 	}
+
+	public function get_total_barang() {
+		$hasil = $this->db->query("SELECT COUNT(id_barang) as total_barang FROM barang");
+		return $hasil->row_array();
+	}
 }
 

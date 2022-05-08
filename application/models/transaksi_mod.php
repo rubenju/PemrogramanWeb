@@ -19,5 +19,10 @@ class transaksi_mod extends CI_Model {
 		$hasil = $this->db->query("SELECT * FROM delete_transaksi($id_transaksi)");
 		return $hasil;
 	}
+
+	public function get_total_transaksi() {
+		$hasil = $this->db->query("SELECT COUNT(id_transaksi) as total_transaksi FROM transaksi");
+		return $hasil->row_array();
+	}
 }
 
